@@ -1,18 +1,16 @@
-import { Options } from '@mikro-orm/core';
-import { PostgreSqlDriver } from '@mikro-orm/postgresql';
+import { defineConfig } from '@mikro-orm/postgresql';
 
-const config: Options<PostgreSqlDriver> = {
+export default defineConfig({
   host: 'localhost',
   port: 5432,
   user: 'haitipay',
   password: 'admin',
-  dbName: 'ewallet_db',
-  entities: ['dist/entities'],     // Pour production (compilé)
-  entitiesTs: ['src/entities'],    // Pour développement
+  dbName: 'e_wallet_db',
+  entities: ['dist/**/**/**/*.entity.js'],
+  entitiesTs: ['src/**/**/**/*.entity.ts'],
   migrations: {
     path: 'dist/migrations',
     pathTs: 'src/migrations',
   },
   debug: true,
-};
-export default config;
+});
