@@ -24,6 +24,9 @@ export class CreateWalletDto {
   @ApiProperty()
   dateOfBirth: string;
 
+  @ApiProperty()
+  nationalId: string;
+
   @IsString()
   @Length(4, 4, { message: 'PIN must be a 4-digit number' })
   @ApiProperty()

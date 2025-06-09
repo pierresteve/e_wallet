@@ -1,8 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query, BadRequestException } from '@nestjs/common';
 import { WalletService } from './wallet.service';
 import { CreateWalletDto } from './dto/create-wallet.dto';
-import chalk from 'chalk';
-import { UpdateWalletDto } from './dto/update-wallet.dto';
+import { RechargeWalletDto} from './dto/recharge-wallet.dto';
 
 @Controller('wallets')
 export class WalletController {
@@ -67,50 +66,12 @@ export class WalletController {
   }
 
 
-  //consulter le profile d un wallets
-  // @Get(':phoneNumber/profile')
-  // async getWalletsProfil(@Param('phoneNumber') phoneNumber: string) {
-  //   const phoneRegex = /^\+509\d{8}$/;
-  //   //verifier si phone est de type +(509)40000000
-  //   if (!phoneRegex.test(phoneNumber)) {
-  //     throw new BadRequestException('Phone number must be a valid phone number');
-  //   }
-  //   const profile_wallet = await this.walletService.findWalletProfil(phoneNumber.toString());
-  //
-  //
-  // }
+  //recharger un wallet depuis le compte LedgerAccount
+  @Post('/recharge')
+  rechargeWallet(@Body() dto: RechargeWalletDto) {
+    return this.walletService.rechargeWallet(dto);
+  }
 
-  // //consulter le solde d'un wallet
-  // @Get(':phoneNumber/balance')
-  // getWalletSolde(@Param('phoneNumber') phoneNumber: string) {
-  //   return this.walletService.findWalletSolde(phoneNumber.toString());
-  // }
 
-  //transfert entre wallet
-  // @Post('/transfer')
-  // doTransferBetweenWallet(@Body() createWalletDto: CreateWalletDto) {
-  //   return this.walletService.transfertBetweenWallet(createWalletDto);
-  // }
 
-  //historique des transaction d'un wallet
-  // @Get(':phoneNumber/transactions')
-  // getWalletHistory(
-  //   @Param('phoneNumber') phoneNumber: string,
-  //   @Query('limit') limit: number,) {
-  //   return this.walletService.walletHistory(phoneNumber.toString());
-  // }
-
-  //Statut du Ledger
-  // @Get('admin/ledger/status')
-  // getLedgerStatus() {
-  //   return this.walletService.ledgerStatus();
-  // }
-
-  //Historique du Ledger
-  // @Get('/admin/ledger/transactions')
-  // getLedgerHistory(
-  //   @Query('limit') limit: number
-  // ) {
-  //   return this.walletService.ledgerHistory();
-  // }
 }

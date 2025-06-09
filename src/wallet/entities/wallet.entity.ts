@@ -13,7 +13,7 @@ export class Wallet {
   @Property()
   balance: number = 0;
 
-  // @Property()
+   @Property()
    pin!: string;
 
   @Property({ onCreate: () => new Date() })
